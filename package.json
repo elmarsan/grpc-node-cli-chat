@@ -1,0 +1,25 @@
+{
+  "name": "grpc-node-cli-chat",
+  "version": "1.0.0",
+  "description": "Cli chat built with grpc and node",
+  "scripts": {
+    "start:server": "node dynamic/server.js",
+    "start:client": "node dynamic/client.js",
+    "build_protos": "protoc -I=. chat.proto --js_out=import_style=commonjs:./static --grpc-web_out=import_style=commonjs,mode=grpcwebtext:./static",
+    "envoy:docker-build": "docker build -t grpc-envoy-proxy .",
+    "envoy:docker-run": "docker run -d --name grpc-envoy-proxy -p 8080:8080 -p 9901:9901 grpc-envoy-proxy"
+  },
+  "keywords": [
+    "grpc",
+    "nodejs",
+    "protocol buffers"
+  ],
+  "author": "elmarsan",
+  "license": "MIT",
+  "dependencies": {
+    "@grpc/grpc-js": "^1.6.8",
+    "@grpc/proto-loader": "^0.7.0",
+    "google-protobuf": "^3.21.0",
+    "grpc-web": "^1.3.1"
+  }
+}
